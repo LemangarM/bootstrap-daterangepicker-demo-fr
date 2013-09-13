@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Sélection d'une période calendaire avec Twitter Bootstrap</title>
+      <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" media="all" href="daterangepicker-bs3.css" />
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+      <script type="text/javascript" src="moment.js"></script>
+      <script type="text/javascript" src="moment.fr.js"></script>
+      <script type="text/javascript" src="daterangepicker.js"></script>
+
+      <script type="text/javascript">
+
+        var pickerLocale = {
+            applyLabel: 'OK',
+            cancelLabel: 'Annuler',
+            fromLabel: 'Entre',
+            toLabel: 'et',
+            customRangeLabel: 'Période personnalisée',
+            daysOfWeek: moment().lang()._weekdaysMin,
+            monthNames: moment().lang()._months,
+            firstDay: 0
+        };
+
+        var pickerRanges = {
+           'Aujourd\'hui': [moment(), moment()],
+           'Hier': [moment().subtract('days', 1), moment().subtract('days', 1)],
+           '5 jours précédents': [moment().subtract('days', 4), moment().subtract('days', 1)],
+           'Ce mois': [moment().startOf('month'), moment().endOf('month')],
+           'Mois précedent': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+        };
+
+
+         $(document).ready(function() {
+            $('#periode').daterangepicker(
+               {
+                  showDropdowns: false,
+                  ranges: pickerRanges,
+                  format: 'DD/MM/YYYY',
+                  separator: ' à ',
+                  locale: pickerLocale
+               }
+           );
+            $('#periode_heure').daterangepicker(
+               {
+                  startDate: moment().subtract('days', 1),
+                  endDate: moment(),
+                  showDropdowns: false,
+                  showWeekNumbers: true,
+                  timePicker: true,
+                  timePickerIncrement: 1,
+                  timePicker12Hour: false,
+                  ranges: pickerRanges,
+                  format: 'DD/MM/YYYY hh:mm',
+                  separator: ' à ',
+                  locale: pickerLocale
+               }
+           );
+         });
+
+
+        </script>
+
+   </head>
+   <body>
+
+     <div class="container">
+         <div class="span12">
+
+            <h4>Sélection d'une période sans les heures</h4>
+            <div class="well">
+
+               <form class="form-horizontal">
+                 <fieldset>
+                  <div class="control-group">
+                    <div class="controls">
+                      <p class="form-control-static">Période: <input type="text" style="width: 200px" name="periode" id="periode" /> </p>
+                    </div>
+                  </div>  
+                 </fieldset>
+               </form>
+            </div>
+
+            <h4>Sélection d'une période AVEC les heures</h4>
+            <div class="well">
+
+               <form class="form-horizontal">
+                 <fieldset>
+                  <div class="control-group">
+                    <div class="controls">
+                      <p class="form-control-static">Période: <input type="text" style="width: 300px" name="periode_heure" id="periode_heure" /> </p>
+                    </div>
+                  </div>  
+                 </fieldset>
+               </form>
+            </div>
+ 
+      </div>
+
+   </body>
+</html>
