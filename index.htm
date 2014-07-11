@@ -6,11 +6,12 @@
       <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
       <link rel="stylesheet" type="text/css" media="all" href="daterangepicker-bs3.css" />
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-      <script type="text/javascript" src="moment.js"></script>
-      <script type="text/javascript" src="moment.fr.js"></script>
+      <script type="text/javascript" src="moment-with-langs.min.js"></script>
       <script type="text/javascript" src="daterangepicker.js"></script>
 
       <script type="text/javascript">
+
+        moment.lang('fr');
 
         var pickerLocale = {
             applyLabel: 'OK',
@@ -56,7 +57,16 @@
                   separator: ' à ',
                   locale: pickerLocale
                }
+            );
+            $('#date_simple').daterangepicker(
+               {
+                  startDate: moment(),
+                  format: 'DD/MM/YYYY',
+                  singleDatePicker: true,
+                  locale: pickerLocale
+               }
            );
+
          });
 
 
@@ -97,6 +107,26 @@
                  </form>
               </div>
           </div>
+        </div>
+
+        <div class="row">
+           <div class="col-xs-12">
+
+              <h4>Sélection d'une date unique</h4>
+              <div class="well">
+
+                 <form class="form-horizontal">
+                   <fieldset>
+                    <div class="control-group">
+                      <div class="controls">
+                        <p class="form-control-static">Date: <input type="text" style="width: 200px" name="date_simple" id="date_simple" /> </p>
+                      </div>
+                    </div>  
+                   </fieldset>
+                 </form>
+              </div>
+          </div>
+
       </div>
 
    </body>
